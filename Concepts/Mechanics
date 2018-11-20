@@ -1,4 +1,5 @@
-Turn-based combat, every character has a set of stats that determines when they can move.
+Turn-based combat, every character has a set of stats that determines when they can move and what their actions are.
+Stats are Health, Power, Defense, Speed, and Mana.
 
 Every character has at least one ability.
 
