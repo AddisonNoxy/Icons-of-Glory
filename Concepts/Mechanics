@@ -1,0 +1,5 @@
+Turn-based combat, every character has a set of stats that determines when they can move.
+
+Every character has at least one ability.
+
+Saving can be done before every fight, but not during a fight.
