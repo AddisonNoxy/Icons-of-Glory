@@ -1,1 +1,46 @@
-//
+//Start
+
+
+//Game Start
+global.textSpeed = 50;
+global.musicVol = 80;
+global.soundVol = 80;
+global.screenWindowed = true;
+global.controls = default; //default when defaults are in place, custom otherwise
+
+sc_load_preferences();
+sc_load_saves();
+
+//Create
+menuFlag = array_create(6, false);
+menuFlag[1] = true;
+menuFlag[5] = true;
+menuFlag[6] = true;
+
+menu[0] = "Campaign";
+menu[1] = "Skirmish";
+menu[2] = "Versus";
+menu[3] = "Challenge";
+menu[4] = "Conquest";
+menu[5] = "Options";
+menu[6] = "Quit";
+
+campaign[0] = "Resume Campaign";
+campaign[1] = "New Singleplayer Campaign";
+campaign[2] = "New Co-op Campaign";
+campaign[3] = "Return";
+
+skirmish[0] = "Resume Skirmish";
+skirmish[1] = "New Skirmish";
+skirmish[2] = "Return";
+
+versus[0] = "Resume Versus";
+versus[1] = "New Versus";
+versus[2] = "Return";
+
+
+
+//Step
+
+
+//Draw
