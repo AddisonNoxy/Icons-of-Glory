@@ -38,9 +38,13 @@ versus[0] = "Resume Versus";
 versus[1] = "New Versus";
 versus[2] = "Return";
 
+menuCurrent = "title";
+
 
 
 //Step
+switch menuCurrent {
 
+}
 
 //Draw
