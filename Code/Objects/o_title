@@ -1,7 +1,10 @@
 //Start
 
 
-//Game Start
+/*
+Game Start
+*/
+
 global.textSpeed = 50;
 global.musicVol = 80;
 global.soundVol = 80;
@@ -16,9 +19,13 @@ global.conquestSave = false;
 sc_load_preferences();
 sc_load_saves();
 
-//Create
+/* 
+Create
+*/
+
 audio_play_sound(m_title, 1, true);
 
+//Set up menu flags and options
 menuFlag = array_create(6, false);
 menuFlag[1] = true;
 menuFlag[5] = true;
@@ -58,8 +65,14 @@ selection = 0;
 
 
 
-//Step
+/*
+Step
+*/
+
+//Get the current menu
 switch menuCurrent {
+  
+  //If the title screen is showing
   case "title":
   switch keyboard_key {
     case upkey:
@@ -70,11 +83,13 @@ switch menuCurrent {
     selection = clamp(selection++, 0, 6);
     if (!menuFlag[selection]) selection++;
     break;
-    case selectkey:
+    case selectkey: //Check if the selected option is not the Quit option. If it isn't, change menus. If it is, end the game
     if (menuFlag[selection] && selection < 6) menuCurrent = string_lower(menu[selection]); selection = 0; else game_end();
     break;
   }
   break;
+  
+  //If the campaign screen is showing
   case "campaign":
   switch keyboard_key {
     case upkey: selection = clamp(selection--, 0, 3); break;
@@ -94,6 +109,8 @@ switch menuCurrent {
     break;
   }
   break;
+  
+  //If the skirmish screen is showing
   case "skirmish":
   switch keyboard_key {
     case upkey: selection = clamp(selection--, 0, 2); break;
@@ -111,6 +128,8 @@ switch menuCurrent {
     }
   }
   break;
+  
+  //If the versus screen is showing
   case "versus":
   switch keyboard_key {
     case upkey: selection = clamp(selection--, 0, 2); break;
@@ -128,6 +147,8 @@ switch menuCurrent {
     }
   }
   break;
+  
+  //If the options screen is showing
   case "options":
   switch keyboard_key {
     case upkey: selection = clamp(selection--, 0, 6); break;
@@ -163,4 +184,6 @@ switch menuCurrent {
   break;
 }
 
-//Draw
+/*
+Draw
+*/
