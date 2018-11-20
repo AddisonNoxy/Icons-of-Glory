@@ -7,11 +7,18 @@ global.musicVol = 80;
 global.soundVol = 80;
 global.screenWindowed = true;
 global.controls = default; //default when defaults are in place, custom otherwise
+global.campaignSave = false;
+global.skirmishSave = false;
+global.versusSafe = false;
+global.challengeSave = false;
+global.conquestSave = false;
 
 sc_load_preferences();
 sc_load_saves();
 
 //Create
+audio_play_sound(m_title, 1, true);
+
 menuFlag = array_create(6, false);
 menuFlag[1] = true;
 menuFlag[5] = true;
@@ -38,13 +45,122 @@ versus[0] = "Resume Versus";
 versus[1] = "New Versus";
 versus[2] = "Return";
 
+options[0] = "Windowed Mode";
+options[1] = "Music Volume";
+options[2] = "Sound Volume";
+options[3] = "Text Speed";
+options[4] = "Controls";
+options[5] = "Restore Defaults";
+options[6] = "Save and Return";
+
 menuCurrent = "title";
+selection = 0;
 
 
 
 //Step
 switch menuCurrent {
-
+  case "title":
+  switch keyboard_key {
+    case upkey:
+    selection = clamp(selection--, 0, 6);
+    if (!menuFlag[selection]) selection--;
+    break;
+    case downkey:
+    selection = clamp(selection++, 0, 6);
+    if (!menuFlag[selection]) selection++;
+    break;
+    case selectkey:
+    if (menuFlag[selection] && selection < 6) menuCurrent = string_lower(menu[selection]); selection = 0; else game_end();
+    break;
+  }
+  break;
+  case "campaign":
+  switch keyboard_key {
+    case upkey: selection = clamp(selection--, 0, 3); break;
+    case downkey: selection = clamp(selection++, 0, 3); break;
+    case selectkey:
+    if (selection == 0 && !global.campaignSave) {
+      exit;
+    } else {
+      audio_play_sound(a_menuSelect, 2, false);
+      switch selection {
+        case 0: sc_loadCampaign(); break;
+        case 1: cutscene_create(1newCampaign); break;
+        case 2: cutscene_create(2newCampaign); break;
+        case 3: menuCurrent = "title"; selection = 0; break;
+      }
+    }
+    break;
+  }
+  break;
+  case "skirmish":
+  switch keyboard_key {
+    case upkey: selection = clamp(selection--, 0, 2); break;
+    case downkey: selection = clamp(selection++, 0, 2); break;
+    case selectkey:
+    if (selection == 0 && !global.skirmishSave) {
+      exit;
+    } else {
+      audio_play_sound(a_menuSelect, 2, false);
+      switch selection {
+        case 0: sc_loadSkirmish(); break;
+        case 1: cutscene_create(newSkirmish); break;
+        case 2: menuCurrent = "title"; selection = 0; break;
+      }
+    }
+  }
+  break;
+  case "versus":
+  switch keyboard_key {
+    case upkey: selection = clamp(selection--, 0, 2); break;
+    case downkey: selection = clamp(selection++, 0, 2); break;
+    case selectkey:
+    if (selection == 0 && !global.versusSave) {
+      exit;
+    } else {
+      audio_play_sound(a_menuSelect, 2, false);
+      switch selection {
+        case 0: sc_loadVersus(); break;
+        case 1: cutscene_create(newVersus); break;
+        case 2: menuCurrent = title"; selection = 0; break;
+      }
+    }
+  }
+  break;
+  case "options":
+  switch keyboard_key {
+    case upkey: selection = clamp(selection--, 0, 6); break;
+    case downkey: selection = clamp(selection++, 0, 6); break;
+    case leftkey:
+    switch selection {
+      case 1: global.musicVol -= 5; global.musicVol = clamp(global.musicVol, 0, 100); break;
+      case 2: global.soundVol -= 5; global.soundVol = clamp(global.soundVol, 0, 100); break;
+      case 3: global.textSpeed -= 10; global.textSpeed =  clamp(global.textSpeed, 0, 100); break;
+      break;
+      default: exit; break;
+    }
+    break;
+    case rightkey:
+    switch selection {
+      case 1: global.musicVol += 5; global.musicVol = clamp(global.musicVol, 0, 100); break;
+      case 2: global.soundVol += 5; global.soundVol = clamp(global.soundVol, 0, 100); break;
+      case 3: global.textSpeed += 10; global.textSpeed =  clamp(global.textSpeed, 0, 100); break;
+      break;
+      default: exit; break;
+    }
+    break;
+    case selectkey:
+    switch selection {
+      case 0: if (global.screenWindowed) global.screenWindowed = false; else global.screenWindowed = true; break;
+      case 4: exit; break;
+      case 5: sc_restoreDefaults(); sc_save_preferences(); break;
+      case 6: sc_save_preferences(); menuCurrent = "title"; selection = 0; break;
+      default: exit; break;
+    }
+    break;
+  }
+  break;
 }
 
 //Draw
