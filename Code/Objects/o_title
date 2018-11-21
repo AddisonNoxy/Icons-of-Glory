@@ -142,7 +142,7 @@ switch menuCurrent {
       switch selection {
         case 0: sc_loadVersus(); break;
         case 1: cutscene_create(newVersus); break;
-        case 2: menuCurrent = title"; selection = 0; break;
+        case 2: menuCurrent = "title"; selection = 0; break;
       }
     }
   }
