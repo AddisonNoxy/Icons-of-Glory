@@ -1,6 +1,14 @@
 //Start
 
 /*
+Game Start
+*/
+
+//Create sound channels
+global.m_emit = audio_emitter_create();
+global.s_emit = audio_emitter_create();
+
+/*
 Create
 */
 
