@@ -63,21 +63,23 @@ selection = 0;
 Step
 */
 
+var currentKey = keyboard_lastkey;
+
 //Get the current menu
 switch menuCurrent {
   
   //If the title screen is showing
   case "title":
-  switch keyboard_key {
-    case upkey:
+  switch currentKey {
+    case global.upKey:
     selection = clamp(selection--, 0, 6);
     if (!menuFlag[selection]) selection--;
     break;
-    case downkey:
+    case global.downKey:
     selection = clamp(selection++, 0, 6);
     if (!menuFlag[selection]) selection++;
     break;
-    case selectkey: //Check if the selected option is not the Quit option. If it isn't, change menus. If it is, end the game
+    case global.selectKey: //Check if the selected option is not the Quit option. If it isn't, change menus. If it is, end the game
     if (menuFlag[selection] && selection < 6) menuCurrent = string_lower(menu[selection]); selection = 0; else game_end();
     break;
   }
@@ -85,14 +87,14 @@ switch menuCurrent {
   
   //If the campaign screen is showing
   case "campaign":
-  switch keyboard_key {
-    case upkey: selection = clamp(selection--, 0, 3); break;
-    case downkey: selection = clamp(selection++, 0, 3); break;
-    case selectkey:
+  switch currentKey {
+    case global.upKey: selection = clamp(selection--, 0, 3); break;
+    case global.downKey: selection = clamp(selection++, 0, 3); break;
+    case global.selectKey:
     if (selection == 0 && !global.campaignSave) {
       exit;
     } else {
-      audio_play_sound(a_menuSelect, 2, false);
+      audio_play_sound_on(global.s_emit, a_menuSelect, false, 2);
       switch selection {
         case 0: sc_loadCampaign(); break;
         case 1: cutscene_create(1newCampaign); break;
@@ -106,10 +108,10 @@ switch menuCurrent {
   
   //If the skirmish screen is showing
   case "skirmish":
-  switch keyboard_key {
-    case upkey: selection = clamp(selection--, 0, 2); break;
-    case downkey: selection = clamp(selection++, 0, 2); break;
-    case selectkey:
+  switch currentKey {
+    case global.upKey: selection = clamp(selection--, 0, 2); break;
+    case global.downKey: selection = clamp(selection++, 0, 2); break;
+    case global.selectKey:
     if (selection == 0 && !global.skirmishSave) {
       exit;
     } else {
@@ -125,14 +127,14 @@ switch menuCurrent {
   
   //If the versus screen is showing
   case "versus":
-  switch keyboard_key {
-    case upkey: selection = clamp(selection--, 0, 2); break;
-    case downkey: selection = clamp(selection++, 0, 2); break;
+  switch currentKey {
+    case global.upKey: selection = clamp(selection--, 0, 2); break;
+    case global.downKey: selection = clamp(selection++, 0, 2); break;
     case selectkey:
     if (selection == 0 && !global.versusSave) {
       exit;
     } else {
-      audio_play_sound(a_menuSelect, 2, false);
+      audio_play_sound_on(global.s_emit, a_menuSelect, false, 2);
       switch selection {
         case 0: sc_loadVersus(); break;
         case 1: cutscene_create(newVersus); break;
@@ -144,10 +146,10 @@ switch menuCurrent {
   
   //If the options screen is showing
   case "options":
-  switch keyboard_key {
-    case upkey: selection = clamp(selection--, 0, 6); break;
-    case downkey: selection = clamp(selection++, 0, 6); break;
-    case leftkey:
+  switch currentKey {
+    case global.upKey: selection = clamp(selection--, 0, 6); break;
+    case global.downKey: selection = clamp(selection++, 0, 6); break;
+    case global.leftKey:
     switch selection {
       case 1: global.musicVol -= 5; global.musicVol = clamp(global.musicVol, 0, 100); break;
       case 2: global.soundVol -= 5; global.soundVol = clamp(global.soundVol, 0, 100); break;
@@ -156,7 +158,7 @@ switch menuCurrent {
       default: exit; break;
     }
     break;
-    case rightkey:
+    case global.rightKey:
     switch selection {
       case 1: global.musicVol += 5; global.musicVol = clamp(global.musicVol, 0, 100); break;
       case 2: global.soundVol += 5; global.soundVol = clamp(global.soundVol, 0, 100); break;
@@ -165,7 +167,7 @@ switch menuCurrent {
       default: exit; break;
     }
     break;
-    case selectkey:
+    case global.selectKey:
     switch selection {
       case 0: if (global.screenWindowed) global.screenWindowed = false; else global.screenWindowed = true; break;
       case 4: exit; break;
