@@ -17,7 +17,7 @@ sc_load_saves();
 Create
 */
 
-audio_play_sound(m_title, 1, true);
+audio_play_sound_on(global.m_emit, m_title, false, 1);
 
 //Set up menu flags and options
 menuFlag = array_create(6, false);
