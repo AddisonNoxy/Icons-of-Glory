@@ -1,1 +1,99 @@
-//
+//Start
+
+/*
+Create
+*/
+
+state = 0;
+menuName = "";
+menuCurrent = none;
+party = array_create(3, "");
+partyName = "The Chosen Ones";
+character = array_create(3, "");
+selection = 0;
+
+/*
+Step
+*/
+
+var i = 0;
+
+for (i = 0; i < array_length_1d(party); i++) {
+  if (character[i] == "") continue; else {
+    switch character[i] {
+      case "hero": party[i] = o_hero; break;
+      case "defender": party[i] = o_defender; break;
+      case "gunslinger": party[i] = o_gunslinger; break;
+      case "cleric": party[i] = o_cleric; break;
+      case "warlock": party[i] = o_warlock; break;
+      case "warrior": party[i] = o_warrior; break;
+    }
+  }
+}
+
+event_user(state);
+
+if (menuCurrent != none) (
+  switch menuCurrent {
+    case 
+  }
+}
+
+
+/*
+User Event 0: New Campaign Menu
+*/
+
+menuName = "New Campaign";
+
+
+
+/*
+User Event 1: New Skirmish Menu
+*/
+
+
+
+/*
+User Event 2: New Versus Menu
+*/
+
+
+
+/*
+User Event 3: New Challenge Menu
+*/
+
+
+
+/*
+User Event 4: New Conquest Menu
+*/
+
+
+
+/*
+Draw
+*/
+
+var i = 0;
+
+while (i < array_length_1d(party)) {
+  draw_sprite(50+(150*i), 50, party[i].sprite_index);
+  draw_text(50+(150*i), 150, party[i].name);
+  i++;
+}
+  
+switch state {
+    case 0:
+    break;
+    case 1:
+    break;
+    case 2:
+    break;
+    case 3:
+    break;
+    case 4:
+    break;
+}
+
