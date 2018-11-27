@@ -31,13 +31,16 @@ for (i = 0; i < array_length_1d(party); i++) {
   }
 }
 
-event_user(state);
-
-if (menuCurrent != none) (
-  switch menuCurrent {
-    case 
-  }
+switch state {
+  case 0:
+  menuCurrent = "campaignselect";
+  menuName = "New Campaign";
+  break;
+  case 1:
+  break;
 }
+
+event_user(state);
 
 
 /*
@@ -73,6 +76,12 @@ User Event 4: New Conquest Menu
 
 
 /*
+User Event 5: Party Status Menu
+*/
+
+
+
+/*
 Draw
 */
 
@@ -94,6 +103,8 @@ switch state {
     case 3:
     break;
     case 4:
+    break;
+    case 5:
     break;
 }
 
