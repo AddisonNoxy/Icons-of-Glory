@@ -11,6 +11,8 @@ global.versusSave = false;
 global.challengeSave = false;
 global.conquestSave = false;
 
+sc_load_saves();
+
 /* 
 Create
 */
