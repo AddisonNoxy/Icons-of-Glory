@@ -12,7 +12,7 @@ global.screenWindowed = true;
 global.controls = default; //default when defaults are in place, custom otherwise
 global.campaignSave = false;
 global.skirmishSave = false;
-global.versusSafe = false;
+global.versusSave = false;
 global.challengeSave = false;
 global.conquestSave = false;
 
