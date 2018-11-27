@@ -1,1 +1,35 @@
 //Start
+
+/*
+Create
+*/
+
+//Set up the input keys
+selectKey = keyboard_check_released(ord("Z"));
+backKey = keyboard_check_released(ord("X"));
+pauseKey = keyboard_check_released(vk_escape);
+leftKey = keyboard_check(vk_left);
+rightKey = keyboard_check(vk_right);
+upKey = keyboard_check(vk_up);
+downKey = keyboard_check(vk_down);
+
+sc_load_preferences();
+sc_load_saves();
+
+/*
+Step
+*/
+
+//Set global input
+global.selectKey = selectKey;
+global.backKey = backKey;
+global.pauseKey = pauseKey;
+global.leftKey = leftKey;
+global.rightKey = rightKey;
+global.upKey = upKey;
+global.downKey = downKey;
+
+/*
+Draw
+*/
+
