@@ -4,6 +4,13 @@
 Create
 */
 
+//Set up default preferences
+global.textSpeed = 50;
+global.musicVol = 80;
+global.soundVol = 80;
+global.screenWindowed = true;
+global.controls = "default"; //default when defaults are in place, custom otherwise
+
 //Set up the input keys
 selectKey = keyboard_check_released(ord("Z"));
 backKey = keyboard_check_released(ord("X"));
@@ -14,7 +21,6 @@ upKey = keyboard_check(vk_up);
 downKey = keyboard_check(vk_down);
 
 sc_load_preferences();
-sc_load_saves();
 
 /*
 Step
