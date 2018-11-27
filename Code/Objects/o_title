@@ -5,11 +5,6 @@
 Game Start
 */
 
-global.textSpeed = 50;
-global.musicVol = 80;
-global.soundVol = 80;
-global.screenWindowed = true;
-global.controls = default; //default when defaults are in place, custom otherwise
 global.campaignSave = false;
 global.skirmishSave = false;
 global.versusSave = false;
